@@ -1,35 +1,34 @@
 var gulp = require('gulp');
 
-var connect = require('gulp-connect');
 var jshint = require('gulp-jshint');
-var clean = require('gulp-clean');
-var gutil = require('gulp-util');
 var browserSync = require('browser-sync').create();
 
+var config = {
+    filesToWatch : [
+        './app/**/*.html',
+        '!./app/bower_components/**',
+        './app/*.html',
+        './app/**/*.js',
+        '!./app/bower_components/**',
+        './app/*.js'
+    ]
+};
 gulp.task('lint', function() {
-    gulp.src(['./app/**/*.js', '!./app/bower_components/**'])
+    gulp.src(['./app/**/*.js', './app/*.js', '!./app/bower_components/**'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./app/**/*.html', ['refresh']);
+    gulp.watch(config.filesToWatch, ['reloadApp']);
 });
 
-gulp.task('refresh', function(){
-    gutil.log("reloading app...");
-
-    gulp.src(".app/index.html")
-        .pipe(browserSync.reload());
-
-   // browserSync.reload({stream:true});
+gulp.task('reloadApp', function(){
+   browserSync.reload(".app/index.html");
 });
 
 gulp.task('serve', function() {
-    var files = [
-        './app/**/*.html'
-    ];
     browserSync.init({
         server: {
             baseDir: "app/"
@@ -40,14 +39,6 @@ gulp.task('serve', function() {
         notify: true
     });
 });
-
-// gulp.task('connect', function () {
-//     connect.server({
-//         root: 'app/',
-//         port: 8888,
-//         livereload: true
-//     });
-// });
 
 gulp.task('default',
     ['start']

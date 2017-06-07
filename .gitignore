@@ -5,3 +5,4 @@ npm-debug.log
 dist
 .idea
 *.iml
+bower_components

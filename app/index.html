@@ -12,6 +12,8 @@
     <div id="main-content" class="container">
         <h1>Websocket Sample Version 2</h1>
         <div ng-include src="'messageDisplay/messageDisplay.html'"></div>
+        <hr>
+        <div ng-include src="'ptipsMessageDisplay/ptipsMessageDisplay.html'"></div>
     </div>
 
     <script src="bower_components/angular/angular.js"></script>
@@ -20,9 +22,13 @@
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
     <script src="bower_components/stomp-websocket/lib/stomp.js"></script>
+    <script src="bower_components/pako/dist/pako.js"></script>
 
     <script src="app.js"></script>
     <script src="messageDisplay/messageDisplayController.js"></script>
+    <script src="ptipsMessageDisplay/ptipsMessageDisplayController.js"></script>
+    <script src="js/util/zipUtil.js"></script>
     <script src="js/websocket/websocketService.js"></script>
+    <script src="js/websocket/websocketPtipsService.js"></script>
 </body>
 </html>

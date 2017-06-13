@@ -8,6 +8,7 @@
     ]);
 
     angular.module('sampleWebsocketApp.controllers', ['sampleWebsocketApp.services']);
-    angular.module('sampleWebsocketApp.services', []);
+    angular.module('sampleWebsocketApp.services', ['sampleWebsocketApp.utils']);
+    angular.module('sampleWebsocketApp.utils', []);
 
 }());

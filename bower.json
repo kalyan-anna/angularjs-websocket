@@ -25,6 +25,7 @@
     "font-awesome": "fontawesome#^4.7.0",
     "underscore": "^1.8.3",
     "sockjs-client": "^1.1.4",
-    "stomp-websocket": "^2.3.4"
+    "stomp-websocket": "^2.3.4",
+    "pako": "~0.2.6"
   }
 }

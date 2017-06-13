@@ -5,12 +5,13 @@ var browserSync = require('browser-sync').create();
 
 var config = {
     filesToWatch : [
-        './app/**/*.html',
         '!./app/bower_components/**',
+        './app/**/*.html',
         './app/*.html',
         './app/**/*.js',
-        '!./app/bower_components/**',
-        './app/*.js'
+        './app/*.js',
+        './app/**/*.css',
+        './app/*.css',
     ]
 };
 gulp.task('lint', function() {

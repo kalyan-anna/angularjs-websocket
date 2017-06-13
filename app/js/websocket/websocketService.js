@@ -6,6 +6,7 @@
         .service('websocketService', function($q) {
 
             var vehicleListener = $q.defer();
+            var tripListener = $q.defer();
             var stompClient;
 
             this.connect = function() {
@@ -14,6 +15,7 @@
                 stompClient = Stomp.over(socket);
                 stompClient.connect({}, function () {
                     subscribeToVehicleChannel();
+                    subscribeToTripChannel();
                 });
             };
 
@@ -26,19 +28,20 @@
                 return vehicleListener.promise;
             };
 
+            this.getTripMessage = function() {
+                return tripListener.promise;
+            };
+
             var subscribeToVehicleChannel = function() {
                 stompClient.subscribe("/channel/vehicle", function(vehicleData) {
                     vehicleListener.notify(vehicleData.body);
                 });
-                // var count = 0;
-                // setInterval(function() {
-                //     var vehicleId = '9944' + count++;
-                //     var vehicledata = {
-                //         vehicleId: vehicleId,
-                //         serviceDesc: vehicleId + ' service'
-                //     };
-                //     vehicleListener.notify(vehicledata);
-                // }, 2000);
+            };
+
+            var subscribeToTripChannel = function() {
+                stompClient.subscribe("/channel/trip", function(tripData) {
+                    tripListener.notify(tripData.body);
+                });
             };
         });
 
